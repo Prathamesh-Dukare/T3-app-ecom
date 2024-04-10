@@ -8,6 +8,7 @@ import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
+  test: postRouter,
 });
 
 // export type definition of API
