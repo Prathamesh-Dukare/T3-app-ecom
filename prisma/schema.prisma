@@ -10,11 +10,40 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model User {
+    id         Int     @id @default(autoincrement())
+    name       String
+    email      String  @unique
+    password   String
+    isVerified Boolean @default(false) @map("is_verified")
+    signUpOtp  String? @map("sign_up_otp")
 
-    @@index([name])
+    createdAt  DateTime              @default(now()) @map("created_at")
+    updatedAt  DateTime              @updatedAt @map("updated_at")
+    categories userCategoryMapping[]
+
+    @@index([email])
+}
+
+model Category {
+    id         Int                   @id @default(autoincrement())
+    semanticId String                @unique @map("semantic_id")
+    name       String
+    users      userCategoryMapping[]
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model userCategoryMapping {
+    id         Int      @id @default(autoincrement())
+    user       User     @relation(fields: [userId], references: [id])
+    userId     Int      @map("user_id")
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId Int      @map("category_id")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("user_category_mapping")
 }
