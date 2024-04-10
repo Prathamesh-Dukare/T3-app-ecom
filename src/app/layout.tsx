@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import Topnav from "./_components/topnav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,8 +24,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+      <body className={`font-sans ${inter.variable} mx-auto max-w-[1700px]`}>
+        <TRPCReactProvider>
+          <Topnav />
+
+          {children}
+        </TRPCReactProvider>
       </body>
     </html>
   );
