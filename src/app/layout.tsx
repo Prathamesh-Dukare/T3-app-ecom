@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import Topnav from "./_components/topnav";
+import Banner from "./_components/banner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable} mx-auto max-w-[1700px]`}>
         <TRPCReactProvider>
           <Topnav />
+          <Banner />
 
           {children}
         </TRPCReactProvider>

@@ -16,7 +16,7 @@ export default function Topnav() {
           <Link href={"#"}>ECOMMERCE</Link>
         </p>
 
-        <ul className="tabs flex gap-8 font-semibold lg:hidden">
+        <ul className="tabs flex gap-8 font-semibold lg:hidden mr-28">
           <Link href={"#"}>Categories</Link>
           <Link href={"#"}>Sale</Link>
           <Link href={"#"}>Clearance</Link>

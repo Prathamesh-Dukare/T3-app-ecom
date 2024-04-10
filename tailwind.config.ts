@@ -8,6 +8,11 @@ export default {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+      colors: {
+        primary: "#000000",
+        lightBg: "#F4F4F4",
+        lightText: "#333333",
+      },
       screens: {
         "2xl": { max: "1535px" },
         xl: { max: "1279px" },
