@@ -16,12 +16,22 @@ export default function Topnav() {
           <Link href={"#"}>ECOMMERCE</Link>
         </p>
 
-        <ul className="tabs flex gap-8 font-semibold lg:hidden mr-28">
-          <Link href={"#"}>Categories</Link>
-          <Link href={"#"}>Sale</Link>
-          <Link href={"#"}>Clearance</Link>
-          <Link href={"#"}>New stock</Link>
-          <Link href={"#"}>Trending</Link>
+        <ul className="tabs flex gap-8 font-semibold lg:hidden mr-28 ">
+          <Link className="hover:underline" href={"#"}>
+            Categories
+          </Link>
+          <Link className="hover:underline" href={"#"}>
+            Sale
+          </Link>
+          <Link className="hover:underline" href={"#"}>
+            Clearance
+          </Link>
+          <Link className="hover:underline" href={"#"}>
+            New stock
+          </Link>
+          <Link className="hover:underline" href={"#"}>
+            Trending
+          </Link>
         </ul>
 
         <div className="action flex gap-5">

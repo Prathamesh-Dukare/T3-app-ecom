@@ -12,6 +12,7 @@ export default {
         primary: "#000000",
         lightBg: "#F4F4F4",
         lightText: "#333333",
+        borderClr: "#C1C1C1",
       },
       screens: {
         "2xl": { max: "1535px" },
