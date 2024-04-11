@@ -336,6 +336,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-otp-input@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-otp-input/-/react-otp-input-2.0.5.tgz#0379f7a219f11068342f061651ef7528ff552b48"
+  integrity sha512-eB9I7Fd+fob8ivKyOQfQkyP0EdRsz2jNo0snrW5il01tIKeUPoh64MxfgFKxNkqN8G9XI/q/WBWKnseO7tj6Ng==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^18.2.57":
   version "18.2.75"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.75.tgz#45d18f384939306d35312def1bf532eb38a68562"
@@ -2524,6 +2531,11 @@ slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+
+sonner@^1.4.41:
+  version "1.4.41"
+  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.4.41.tgz#ff085ae4f4244713daf294959beaa3e90f842d2c"
+  integrity sha512-uG511ggnnsw6gcn/X+YKkWPo5ep9il9wYi3QJxHsYe7yTZ4+cOd1wuodOUmOpFuXL+/RE3R04LczdNCDygTDgQ==
 
 source-map-js@^1.0.2, source-map-js@^1.2.0:
   version "1.2.0"

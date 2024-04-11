@@ -11,12 +11,13 @@ datasource db {
 }
 
 model User {
-    id         Int     @id @default(autoincrement())
+    id         String  @id @default(uuid())
     name       String
     email      String  @unique
     password   String
     isVerified Boolean @default(false) @map("is_verified")
-    signUpOtp  String? @map("sign_up_otp")
+    signUpOtp  Int?    @map("sign_up_otp")
+    // todo : add otp expiry flow
 
     createdAt  DateTime              @default(now()) @map("created_at")
     updatedAt  DateTime              @updatedAt @map("updated_at")
@@ -41,7 +42,7 @@ model Category {
 model userCategoryMapping {
     id         Int      @id @default(autoincrement())
     user       User     @relation(fields: [userId], references: [id])
-    userId     Int      @map("user_id")
+    userId     String   @map("user_id")
     category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int      @map("category_id")
 
