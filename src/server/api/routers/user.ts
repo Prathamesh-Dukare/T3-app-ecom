@@ -6,7 +6,7 @@ import {
   publicProcedure,
 } from "@/server/api/trpc";
 import { signUpUser, verifyUser } from "../../controller/user.controller";
-import { getHash } from "../../../utils/general";
+import { getHash, getJwtToken } from "../../../utils/general";
 
 export const userRouter = createTRPCRouter({
   greeting: publicProcedure.query(() => "hello8"),
@@ -57,13 +57,24 @@ export const userRouter = createTRPCRouter({
       if (!user) {
         throw new Error("User not found with this email");
       }
+      if (!user?.isVerified) {
+        throw new Error("User is not verified yet.");
+      }
       //  match password
       const hashedPassword = getHash(input.password);
       if (user.password !== hashedPassword) {
         throw new Error("Invalid email or password");
       }
 
-      return user;
+      const token = getJwtToken({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        isVerified: true,
+      });
+      return {
+        token: token,
+      };
     }),
 
   // * get user

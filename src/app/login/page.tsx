@@ -18,6 +18,8 @@ export default function LoginPage() {
   const signIn = api.user.login.useMutation({
     onSuccess(data, variables, context) {
       toast("Login successful");
+      // set token in cookie
+      document.cookie = `authToken=${data.token}; path=/`;
       router.push("/");
     },
     onError(err) {
