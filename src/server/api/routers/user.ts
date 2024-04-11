@@ -5,10 +5,12 @@ import {
   privateProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
+import { signUpUser, verifyUser } from "../../controller/user.controller";
 
 export const userRouter = createTRPCRouter({
   greeting: publicProcedure.query(() => "hello8"),
 
+  // * create user
   create: publicProcedure
     .input(
       z.object({
@@ -18,17 +20,26 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      return ctx.db.user.create({
-        data: {
-          name: input.name,
-          email: input.email,
-          password: input.password,
-        },
-      });
+      const signupRes = await signUpUser(input);
+      console.log("signupRes", signupRes);
+      return signupRes;
     }),
 
+  // * verify otp
+  verifyOtp: publicProcedure
+    .input(
+      z.object({
+        email: z.string().email(),
+        otp: z.string().min(8),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const verifyRes = verifyUser(input);
+      console.log("verifyRes", verifyRes);
+      return verifyRes;
+    }),
+
+  // * login
   login: publicProcedure
     .input(
       z.object({
@@ -50,10 +61,4 @@ export const userRouter = createTRPCRouter({
 
       return user;
     }),
-
-  //   getLatest: publicProcedure.query(({ ctx }) => {
-  //     return ctx.db.post.findFirst({
-  //       orderBy: { createdAt: "desc" },
-  //     });
-  //   }),
 });

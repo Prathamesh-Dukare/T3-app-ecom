@@ -3,14 +3,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import FormInput from "../../_components/formInput";
+import FormInput from "../_components/formInput";
 
-export default function Login() {
+export default function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   // const router = useRouter();
 
@@ -19,18 +18,12 @@ export default function Login() {
     try {
       e.preventDefault();
       const { email, password } = formData;
-      // let signUpRithEmailAndPassword(auth, email, password);
-      // router.replace("/crosspost");
     } catch (err) {
       console.log(err, "error in signup");
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    setError("");
-  }, [formData]);
 
   return (
     <div className="login border border-borderClr w-fit mx-auto px-12 py-14 mt-10 rounded-xl">
@@ -53,8 +46,6 @@ export default function Login() {
           type="password"
           setter={setFormData}
         />
-
-        {error && <p className="pt-3.5 text-center text-red-400">{error}</p>}
 
         <button
           disabled={isSubmitting}

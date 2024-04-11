@@ -4,6 +4,7 @@ interface FormInputProps<T> {
   id: string;
   name: string;
   type: string;
+  min?: number;
   setter: React.Dispatch<React.SetStateAction<T>>;
 }
 
@@ -12,6 +13,7 @@ export default function FormInput<T>({
   name,
   type,
   setter,
+  min,
 }: FormInputProps<T>) {
   const [hidePass, setHidePass] = useState<boolean>(false);
 
@@ -22,6 +24,7 @@ export default function FormInput<T>({
       </label>
       <input
         id={id}
+        minLength={min}
         className="px-3 border rounded-md w-full h-12 outline-none"
         type={hidePass ? "text" : type}
         placeholder="Enter"
@@ -32,6 +35,7 @@ export default function FormInput<T>({
       />
       {type === "password" && (
         <button
+          type="button"
           onClick={() => {
             setHidePass(!hidePass);
           }}
