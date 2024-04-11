@@ -6,6 +6,7 @@ import {
   publicProcedure,
 } from "@/server/api/trpc";
 import { signUpUser, verifyUser } from "../../controller/user.controller";
+import { getHash } from "../../../utils/general";
 
 export const userRouter = createTRPCRouter({
   greeting: publicProcedure.query(() => "hello8"),
@@ -50,11 +51,15 @@ export const userRouter = createTRPCRouter({
       const user = await ctx.db.user.findFirst({
         where: {
           email: input.email,
-          password: input.password,
         },
       });
 
       if (!user) {
+        throw new Error("User not found with this email");
+      }
+      //  match password
+      const hashedPassword = getHash(input.password);
+      if (user.password !== hashedPassword) {
         throw new Error("Invalid email or password");
       }
 
