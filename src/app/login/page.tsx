@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import FormInput from "../_components/formInput";
+import { api } from "../../trpc/react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -11,19 +13,28 @@ export default function LoginPage() {
     password: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
+
+  const signIn = api.user.login.useMutation({
+    onSuccess(data, variables, context) {
+      toast("Login successful");
+      router.push("/");
+    },
+    onError(err) {
+      toast.error(err.message);
+      console.log(err, "error");
+    },
+  });
 
   const signInHandler = async (e: any) => {
     setIsSubmitting(true);
-    try {
-      e.preventDefault();
-      const { email, password } = formData;
-    } catch (err) {
-      console.log(err, "error in signup");
-    } finally {
-      setIsSubmitting(false);
-    }
+    e.preventDefault();
+    signIn.mutate(formData);
   };
+
+  useEffect(() => {
+    setIsSubmitting(false);
+  }, [formData]);
 
   return (
     <div className="login border border-borderClr w-fit mx-auto px-12 py-14 mt-10 rounded-xl">

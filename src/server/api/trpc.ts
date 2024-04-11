@@ -27,12 +27,12 @@ import { JwtDecodedInterface, findUserByToken } from "../../utils/dbHelper";
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   const token = opts.headers.get("Authorization")?.replace("Bearer ", "");
-  console.log("token", token);
-  const user: JwtDecodedInterface | null = findUserByToken(token);
+  const user = findUserByToken(token);
+
   console.log("user", user);
   return {
     db,
-    user: user,
+    user,
     ...opts,
   };
 };

@@ -10,9 +10,9 @@ export interface JwtDecodedInterface {
 export function findUserByToken(
   token: string | undefined,
 ): JwtDecodedInterface | null {
-  if (!token) {
+  if (!token || token === "undefined") {
     return null;
   }
-  const jwtDecoded = verifyJwtToken(token);
+  const jwtDecoded = verifyJwtToken(token as string);
   return jwtDecoded as JwtDecodedInterface;
 }

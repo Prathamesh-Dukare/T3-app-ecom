@@ -26,13 +26,6 @@ export default function AuthComponent({
     if (!token && isOnprivateRoute) {
       router.push("/login");
     }
-
-    if (!token) {
-      router.push("/login");
-    }
-    if (token) {
-      router.push("/");
-    }
   }, []);
 
   return <>{children}</>;
