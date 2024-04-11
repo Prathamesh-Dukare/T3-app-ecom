@@ -48,7 +48,6 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
                   ?.split("=")[1]
               }`,
             );
-
             return headers;
           },
         }),
