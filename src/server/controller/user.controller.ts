@@ -67,7 +67,13 @@ async function verifyUser(input: { email: string; otp: string }) {
     });
 
     // jwt token generation
-    const token = getJwtToken({ id: user.id });
+    const token = getJwtToken({
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      isVerified: true,
+    });
+
     return {
       token,
     };

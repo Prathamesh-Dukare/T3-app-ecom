@@ -11,7 +11,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { db } from "@/server/db";
-import { findUserByToken } from "../../utils/dbHelper";
+import { JwtDecodedInterface, findUserByToken } from "../../utils/dbHelper";
 
 /**
  * 1. CONTEXT
@@ -28,7 +28,7 @@ import { findUserByToken } from "../../utils/dbHelper";
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   const token = opts.headers.get("Authorization")?.replace("Bearer ", "");
   console.log("token", token);
-  const user = await findUserByToken(token);
+  const user: JwtDecodedInterface | null = findUserByToken(token);
   console.log("user", user);
   return {
     db,

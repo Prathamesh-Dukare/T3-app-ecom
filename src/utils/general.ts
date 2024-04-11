@@ -13,9 +13,13 @@ function getJwtToken(data: any) {
   });
 }
 
+function verifyJwtToken(token: string) {
+  return JWT.verify(token, env.JWT_SECRET);
+}
+
 function getHash(input: string) {
   const hash = createHmac("sha256", env.HASH_SALT).update(input).digest("hex");
   return hash;
 }
 
-export { generateOtp, getJwtToken, getHash };
+export { generateOtp, getJwtToken, verifyJwtToken, getHash };

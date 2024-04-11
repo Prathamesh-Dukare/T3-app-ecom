@@ -60,4 +60,26 @@ export const userRouter = createTRPCRouter({
 
       return user;
     }),
+
+  // * get user
+  getUser: privateProcedure.query(async ({ ctx }) => {
+    const user = await ctx.db.user.findFirst({
+      where: {
+        id: ctx.user.id.toString(),
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    return user;
+  }),
 });

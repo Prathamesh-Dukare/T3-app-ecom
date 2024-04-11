@@ -1,14 +1,18 @@
-import { db } from "../server/db";
+import { verifyJwtToken } from "./general";
 
-export const findUserByToken = async (token: string | undefined) => {
+export interface JwtDecodedInterface {
+  id: number;
+  email: string;
+  name: string;
+  isVerified: boolean;
+}
+
+export function findUserByToken(
+  token: string | undefined,
+): JwtDecodedInterface | null {
   if (!token) {
     return null;
   }
-
-  //   return db.user.findFirst({
-  //     where: {
-  //       token,
-  //     },
-  //   });
-  return { id: 1, name: "John Doe" };
-};
+  const jwtDecoded = verifyJwtToken(token);
+  return jwtDecoded as JwtDecodedInterface;
+}
