@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { db } from "../db";
-import { generateOtp, getJwtToken } from "../../utils/general";
+import { generateOtp, getHash, getJwtToken } from "../../utils/general";
+import { sendOtpMail } from "../../utils/mail";
 
 async function signUpUser(input: {
   name: string;
@@ -13,14 +14,20 @@ async function signUpUser(input: {
       data: {
         name: input.name,
         email: input.email,
-        password: input.password,
+        password: getHash(input.password),
         signUpOtp: otp,
       },
     });
 
-    // todo : send otp in email
+    // no need to wait
+    sendOtpMail(otp, input.email).catch((e) => {
+      console.log("error in sending otp mail", e);
+    });
 
-    return user;
+    return {
+      success: true,
+      message: "OTP sent successfully. Please verify your email.",
+    };
   } catch (e) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       switch (e.code) {
@@ -45,8 +52,6 @@ async function verifyUser(input: { email: string; otp: string }) {
       },
     });
 
-    console.log(user, "ala");
-
     if (!user) {
       throw new Error("Invalid OTP");
     }
@@ -63,7 +68,6 @@ async function verifyUser(input: { email: string; otp: string }) {
 
     // jwt token generation
     const token = getJwtToken({ id: user.id });
-
     return {
       token,
     };

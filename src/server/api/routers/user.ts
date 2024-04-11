@@ -34,8 +34,7 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const verifyRes = verifyUser(input);
-      console.log("verifyRes", verifyRes);
+      const verifyRes = await verifyUser(input);
       return verifyRes;
     }),
 

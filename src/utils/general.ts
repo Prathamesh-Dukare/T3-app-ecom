@@ -13,8 +13,8 @@ function getJwtToken(data: any) {
   });
 }
 
-function getHash(input: string, salt: string) {
-  const hash = createHmac("sha256", salt).update(input).digest("hex");
+function getHash(input: string) {
+  const hash = createHmac("sha256", env.HASH_SALT).update(input).digest("hex");
   return hash;
 }
 

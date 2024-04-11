@@ -10,6 +10,9 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
     DB_PASSWORD: z.string(),
     JWT_SECRET: z.string(),
+    HASH_SALT: z.string(),
+    SMTP_SENDER_EMAIL: z.string(),
+    SMTP_SENDER_PASSWORD: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -32,7 +35,10 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     DB_PASSWORD: process.env.DB_PASSWORD,
     NODE_ENV: process.env.NODE_ENV,
+    HASH_SALT: process.env.HASH_SALT,
     JWT_SECRET: process.env.JWT_SECRET,
+    SMTP_SENDER_EMAIL: process.env.SMTP_SENDER_EMAIL,
+    SMTP_SENDER_PASSWORD: process.env.SMTP_SENDER_PASSWORD,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

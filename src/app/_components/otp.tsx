@@ -21,7 +21,6 @@ export default function Otp({ formData }: OtpProps) {
 
   const submitOtp = api.user.verifyOtp.useMutation({
     onSuccess(data) {
-      console.log(data, "data");
       toast.success("OTP verified successfully");
       // set token in cookie
       document.cookie = `authToken=${data.token}; path=/`;
