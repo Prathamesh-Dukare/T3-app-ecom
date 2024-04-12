@@ -1,6 +1,7 @@
 import JWT from "jsonwebtoken";
 import { createHmac } from "crypto";
 import { env } from "../env";
+import { faker } from "@faker-js/faker";
 
 function generateOtp(): number {
   const otp = Math.floor(10000000 + Math.random() * 90000000);
@@ -26,4 +27,23 @@ function getHash(input: string) {
   return hash;
 }
 
-export { generateOtp, getJwtToken, verifyJwtToken, getHash };
+function generateCategories(count: number) {
+  const categories = [];
+  for (let i = 0; i < count; i++) {
+    const item = faker.commerce.department();
+    const category = {
+      name: item,
+      semantic_id: item.toLowerCase(),
+    };
+    categories.push(category);
+  }
+  return categories;
+}
+
+export {
+  generateOtp,
+  getJwtToken,
+  verifyJwtToken,
+  getHash,
+  generateCategories,
+};

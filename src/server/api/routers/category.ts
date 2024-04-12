@@ -1,10 +1,24 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { generateCategories } from "../../../utils/general";
 
 export const categoryRouter = createTRPCRouter({
-  init: publicProcedure.mutation(async ({ ctx }) => {
-    // const ctx
+  // * Init fake data into categories table
+  initFakeData: publicProcedure.mutation(async ({ ctx }) => {
+    const fakeEntries = generateCategories(100);
+    const initRes = await ctx.db.category.createMany({
+      data: [
+        ...fakeEntries.map((entry) => {
+          return {
+            name: entry.name,
+            semanticId: entry.semantic_id,
+          };
+        }),
+      ],
+    });
+    console.log(initRes, "initRes");
+    return initRes;
   }),
 
   create: publicProcedure
