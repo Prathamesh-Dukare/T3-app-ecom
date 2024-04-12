@@ -20,7 +20,7 @@ export const userRouter = createTRPCRouter({
         password: z.string().min(8),
       }),
     )
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async ({ input }) => {
       const signupRes = await signUpUser(input);
       console.log("signupRes", signupRes);
       return signupRes;
@@ -34,7 +34,7 @@ export const userRouter = createTRPCRouter({
         otp: z.string().min(8),
       }),
     )
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async ({ input }) => {
       const verifyRes = await verifyUser(input);
       return verifyRes;
     }),

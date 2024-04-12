@@ -51,11 +51,6 @@ export const categoryRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
-      const updateRes = await markInterest(
-        input.categoryId,
-        input.check,
-        ctx.user.id,
-      );
-      return updateRes;
+      return await markInterest(input.categoryId, input.check, ctx.user.id);
     }),
 });

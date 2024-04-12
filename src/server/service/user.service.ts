@@ -10,7 +10,7 @@ async function signUpUser(input: {
 }) {
   try {
     const otp = generateOtp();
-    const user = await db.user.create({
+    await db.user.create({
       data: {
         name: input.name,
         email: input.email,

@@ -11,7 +11,8 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { db } from "@/config/db";
-import { JwtDecodedInterface, findUserByToken } from "../../utils";
+import { findUserByToken } from "../../utils";
+import type { JwtDecodedInterface } from "../../utils";
 
 /**
  * 1. CONTEXT

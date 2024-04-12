@@ -28,7 +28,7 @@ export default function LoginPage() {
     },
   });
 
-  const signInHandler = async (e: any) => {
+  const signInHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
     e.preventDefault();
     signIn.mutate(formData);

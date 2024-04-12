@@ -73,7 +73,7 @@ async function markInterest(
   categoryId: number,
   check: boolean,
   userId: string,
-): Promise<any> {
+): Promise<void> {
   try {
     const mapping = await db.userCategoryMapping.findFirst({
       where: {
@@ -110,10 +110,6 @@ async function markInterest(
     } else {
       throw new Error("Invalid operation");
     }
-
-    return {
-      message: "success",
-    };
   } catch (e) {
     throw new Error((e as Error)?.message);
   }

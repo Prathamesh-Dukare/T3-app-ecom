@@ -16,7 +16,7 @@ export default function SignUp() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const createUser = api.user.create.useMutation({
-    onSuccess(data, variables, context) {
+    onSuccess(data) {
       console.log(data, "data");
       setIsOtpScreen(true);
       toast("Check your email for OTP", {
@@ -31,7 +31,7 @@ export default function SignUp() {
   });
 
   // * Create handler
-  const signUpHandler = async (e: any) => {
+  const signUpHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     createUser.mutate(formData);

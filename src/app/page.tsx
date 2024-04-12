@@ -18,9 +18,10 @@ export default function Home() {
 
   const categoryData = api.category.getAll.useMutation({
     onSuccess(data) {
-      console.log(data?.categories, "data?.categories");
-      setPageData(data?.categories as []);
-      setPageCount(data?.pageCount!);
+      if (data) {
+        setPageData(data.categories as CategoryItem[]);
+        setPageCount(data.pageCount as number);
+      }
     },
     onError(error) {
       console.log(error, "error");

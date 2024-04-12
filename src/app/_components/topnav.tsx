@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import userAuthUser from "../../utils/hooks";
+import React from "react";
+import useAuthUser from "../../utils/hooks";
 
 export default function Topnav() {
   // const [name, setName] = useState<string>("");
   let name: string | undefined;
   if (window && window?.location.pathname === "/") {
-    const { user } = userAuthUser();
+    const { user } = useAuthUser();
     name = user?.name;
   }
 

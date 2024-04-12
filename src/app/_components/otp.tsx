@@ -33,7 +33,7 @@ export default function Otp({ formData }: OtpProps) {
     },
   });
 
-  const otpSubmitHandler = async (e: any) => {
+  const otpSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     submitOtp.mutate({

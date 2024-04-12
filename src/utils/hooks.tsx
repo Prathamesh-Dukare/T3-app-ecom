@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../trpc/react";
 import { useRouter } from "next/navigation";
 
-export default function userAuthUser() {
+export default function useAuthUser() {
   const currentUser = api.user.getUser.useQuery();
   const [user, setUser] = useState<{
     id: string;
