@@ -1,7 +1,7 @@
 import { verifyJwtToken } from "./general";
 
 export interface JwtDecodedInterface {
-  id: number;
+  id: string;
   email: string;
   name: string;
   isVerified: boolean;

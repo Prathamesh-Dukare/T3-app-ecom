@@ -45,9 +45,11 @@ model userCategoryMapping {
     userId     String   @map("user_id")
     category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int      @map("category_id")
+    unChecked  Boolean? @default(false) @map("un_checked")
 
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime @updatedAt @map("updated_at")
 
+    @@unique([userId, categoryId], name: "unique_user_category_mapping")
     @@map("user_category_mapping")
 }

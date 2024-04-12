@@ -17,7 +17,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(6); // no need to assume, will also come from db but ok for now
 
-  const categoryData = api.category.GetAll.useMutation({
+  const categoryData = api.category.getAll.useMutation({
     onSuccess(data) {
       console.log(data?.categories, "data?.categories");
       setPageData(data?.categories as []);
@@ -26,6 +26,18 @@ export default function Home() {
     onError(error) {
       console.log(error, "error");
       toast.error(error.message);
+    },
+  });
+
+  const updateInterest = api.category.markInterest.useMutation({
+    onSuccess(data) {
+      toast("Interest updated");
+      console.log(data, "data");
+    },
+    onError(error) {
+      console.log(error, "error");
+      toast.error(error.message);
+      // todo: revert back to previous state
     },
   });
 
@@ -42,6 +54,12 @@ export default function Home() {
         }
         return val;
       });
+    });
+
+    // mutate interest
+    updateInterest.mutate({
+      categoryId: item.id,
+      check: !item.isChecked,
     });
   };
 

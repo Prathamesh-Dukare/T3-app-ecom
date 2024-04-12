@@ -6,10 +6,13 @@ import {
   publicProcedure,
 } from "@/server/api/trpc";
 import { generateCategories } from "../../../utils/general";
-import { getPaginatedCategories } from "../../controller/category.controller";
+import {
+  getPaginatedCategories,
+  markInterest,
+} from "../../controller/category.controller";
 
 export const categoryRouter = createTRPCRouter({
-  // * Init fake data into categories table
+  // * init fake data into categories table
   initFakeData: publicProcedure.mutation(async ({ ctx }) => {
     const fakeEntries = generateCategories(100);
     const initRes = await ctx.db.category.createMany({
@@ -26,16 +29,33 @@ export const categoryRouter = createTRPCRouter({
     return initRes;
   }),
 
-  // * Get paginated categories
-  GetAll: privateProcedure
+  // * get paginated categories
+  getAll: privateProcedure
     .input(
       z.object({
         offset: z.number(),
       }),
     )
-    .mutation(async ({ input }) => {
-      const data = await getPaginatedCategories(input.offset);
+    .mutation(async ({ input, ctx }) => {
+      const data = await getPaginatedCategories(input.offset, ctx.user.id);
       console.log(input.offset, data?.categories.length, "data");
       return data;
+    }),
+
+  // * mark interesest
+  markInterest: privateProcedure
+    .input(
+      z.object({
+        categoryId: z.number(),
+        check: z.boolean(),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const updateRes = await markInterest(
+        input.categoryId,
+        input.check,
+        ctx.user.id,
+      );
+      return updateRes;
     }),
 });
