@@ -26,7 +26,7 @@ async function sendWelcomeEmail(toName: string, toMail: string) {
       `,
   });
 
-  console.log("sendRes", sendRes);
+  // console.log("sendRes", sendRes);
 }
 
 export { sendOtpMail, sendWelcomeEmail };

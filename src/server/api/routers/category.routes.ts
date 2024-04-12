@@ -25,7 +25,7 @@ export const categoryRouter = createTRPCRouter({
         }),
       ],
     });
-    console.log(initRes, "initRes");
+    // console.log(initRes, "initRes");
     return initRes;
   }),
 
@@ -38,7 +38,7 @@ export const categoryRouter = createTRPCRouter({
     )
     .mutation(async ({ input, ctx }) => {
       const data = await getPaginatedCategories(input.offset, ctx.user.id);
-      console.log(input.offset, data?.categories.length, "data");
+      // console.log(input.offset, data?.categories.length, "data");
       return data;
     }),
 

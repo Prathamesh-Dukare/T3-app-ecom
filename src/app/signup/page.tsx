@@ -17,7 +17,6 @@ export default function SignUp() {
 
   const createUser = api.user.create.useMutation({
     onSuccess(data) {
-      console.log(data, "data");
       setIsOtpScreen(true);
       toast("Check your email for OTP", {
         description: "You need to verify yourself to continue",

@@ -94,7 +94,6 @@ export default function Home() {
                   key={item.id}
                   className="inline-flex items-center"
                   onClick={() => {
-                    console.log("onchage");
                     onCheckClick(item);
                   }}
                 >

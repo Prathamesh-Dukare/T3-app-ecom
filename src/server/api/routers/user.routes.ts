@@ -22,7 +22,6 @@ export const userRouter = createTRPCRouter({
     )
     .mutation(async ({ input }) => {
       const signupRes = await signUpUser(input);
-      console.log("signupRes", signupRes);
       return signupRes;
     }),
 

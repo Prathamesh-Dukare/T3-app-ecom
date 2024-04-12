@@ -19,7 +19,7 @@ async function signUpUser(input: {
       },
     });
 
-    // no need to wait
+    // send otp email
     await sendOtpMail(otp, input.email).catch((e) => {
       console.log("error in sending otp mail", e);
     });

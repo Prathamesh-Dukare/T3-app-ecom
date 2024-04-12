@@ -10,8 +10,6 @@ export const AuthComponent = React.memo(function Auth({
   const router = useRouter();
 
   useEffect(() => {
-    console.log("AuthComponent");
-
     const token = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("authToken="))
