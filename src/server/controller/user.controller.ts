@@ -71,7 +71,6 @@ async function verifyUser(input: { email: string; otp: string }) {
       id: user.id,
       email: user.email,
       name: user.name,
-      isVerified: true,
     });
 
     return {

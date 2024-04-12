@@ -7,7 +7,11 @@ function generateOtp(): number {
   return otp;
 }
 
-function getJwtToken(data: any) {
+function getJwtToken(data: {
+  id: string;
+  name: string;
+  email: string;
+}): string {
   return JWT.sign(data, env.JWT_SECRET, {
     expiresIn: "10h",
   });

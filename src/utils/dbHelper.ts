@@ -13,6 +13,5 @@ export function findUserByToken(
   if (!token || token === "undefined") {
     return null;
   }
-  const jwtDecoded = verifyJwtToken(token as string);
-  return jwtDecoded as JwtDecodedInterface;
+  return verifyJwtToken(token as string) as JwtDecodedInterface;
 }

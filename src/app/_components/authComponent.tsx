@@ -10,6 +10,8 @@ export default function AuthComponent({
   const router = useRouter();
 
   useEffect(() => {
+    console.log("AuthComponent");
+
     const token = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("authToken="))
