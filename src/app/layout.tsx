@@ -6,7 +6,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import Topnav from "./_components/topnav";
 import Banner from "./_components/banner";
 import { Toaster } from "sonner";
-import AuthComponent from "./_components/authComponent";
+import { AuthComponent } from "./_components/authComponent";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",

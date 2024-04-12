@@ -32,7 +32,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   console.log("user", user);
   return {
     db,
-    user,
+    user: user as JwtDecodedInterface | null,
     ...opts,
   };
 };

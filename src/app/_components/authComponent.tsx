@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
-export default function AuthComponent({
+export const AuthComponent = React.memo(function Auth({
   children,
 }: {
   children: React.ReactNode;
@@ -31,4 +31,4 @@ export default function AuthComponent({
   }, []);
 
   return <>{children}</>;
-}
+});

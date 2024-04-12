@@ -1,10 +1,22 @@
 "use client";
 
-import { api } from "@/trpc/react";
+import { useEffect } from "react";
+import userAuthUser from "../utils/hooks";
 
 export default function Home() {
-  const hello = api.user.greeting.useQuery();
-  console.log(hello.data, "helo00");
+  const { user, loading } = userAuthUser();
 
-  return <main className="flex min-h-screen">helllo</main>;
+  useEffect(() => {
+    console.log(user, "IN PAGE");
+  }, []);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  return (
+    <main className="home flex min-h-screen">
+      {user && <h1>user : {user.name as string}</h1>}
+    </main>
+  );
 }
