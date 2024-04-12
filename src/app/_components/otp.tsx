@@ -65,7 +65,7 @@ export default function Otp({ formData }: OtpProps) {
 
       <div className="text-center">
         <p className="mt-4">Enter the 8 digit code you have received on </p>
-        <p className="email font-semibold">{"pahesfjn@f.com"}</p>
+        <p className="email font-semibold">{formData.email}</p>
       </div>
 
       <form
