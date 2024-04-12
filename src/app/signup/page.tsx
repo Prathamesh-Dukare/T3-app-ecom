@@ -19,7 +19,9 @@ export default function SignUp() {
     onSuccess(data, variables, context) {
       console.log(data, "data");
       setIsOtpScreen(true);
-      toast("Check your email for OTP");
+      toast("Check your email for OTP", {
+        description: "You need to verify yourself to continue",
+      });
     },
 
     onError(err) {
@@ -42,7 +44,7 @@ export default function SignUp() {
   return isOtpScreen ? (
     <Otp formData={formData} />
   ) : (
-    <div className="signup border border-borderClr w-fit mx-auto px-12 py-14 mt-10 rounded-xl">
+    <div className="signup border  border-borderClr w-fit mx-auto px-12 py-14 mt-10 rounded-xl">
       <h1 className="text-center text-[32px] sm:text-2xl font-semibold">
         Create your account
       </h1>
@@ -54,7 +56,7 @@ export default function SignUp() {
         <FormInput
           id="name"
           name="Name"
-          min={5}
+          min={3}
           type="text"
           setter={setFormData}
         />

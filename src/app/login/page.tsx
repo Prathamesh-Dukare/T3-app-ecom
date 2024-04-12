@@ -16,7 +16,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   const signIn = api.user.login.useMutation({
-    onSuccess(data, variables, context) {
+    onSuccess(data) {
       toast.success("Login successful");
       // set token in cookie
       document.cookie = `authToken=${data.token}; path=/`;

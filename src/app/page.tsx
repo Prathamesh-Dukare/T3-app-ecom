@@ -31,7 +31,7 @@ export default function Home() {
 
   const updateInterest = api.category.markInterest.useMutation({
     onSuccess(data) {
-      toast("Interest updated");
+      toast.success("Interest updated");
       console.log(data, "data");
     },
     onError(error) {
@@ -71,7 +71,7 @@ export default function Home() {
   }, [currentPage]);
 
   return (
-    <div className="otp border border-borderClr w-fit mx-auto px-12 py-14 mt-10 mobile:px-5  rounded-xl overflow-hidden">
+    <div className="interests-page border border-borderClr w-fit mx-auto px-12 py-14 mt-10 mobile:px-5  rounded-xl overflow-hidden">
       <div className="text-center">
         <h1 className="text-[32px] sm:text-2xl font-semibold">
           Please mark your interests!
@@ -80,13 +80,13 @@ export default function Home() {
       </div>
 
       {pageData.length ? (
-        <div className="interests mt-9">
+        <div className="interests mt-9 sm:text-center">
           <h2 className="text-xl">My saved interests!</h2>
 
           <div
             key={String(Math.random())}
             about={String(Math.random())}
-            className="flex flex-col gap-3 my-4"
+            className="flex flex-col gap-3 my-4  sm:w-fit sm:mx-auto"
           >
             {pageData.map((item) => {
               // console.log(item);
