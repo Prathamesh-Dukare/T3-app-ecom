@@ -2,7 +2,7 @@ import { mailTransport } from "../config/mail";
 import { env } from "../env";
 
 async function sendOtpMail(otp: number, toMail: string) {
-  const sendRes = mailTransport.sendMail({
+  const sendRes = await mailTransport.sendMail({
     from: `Prathamesh Dukare <${env.SMTP_SENDER_EMAIL}>`,
     to: toMail,
     subject: "OTP for Ecommerce App",

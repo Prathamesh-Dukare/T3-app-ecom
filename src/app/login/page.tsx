@@ -17,7 +17,7 @@ export default function LoginPage() {
 
   const signIn = api.user.login.useMutation({
     onSuccess(data, variables, context) {
-      toast("Login successful");
+      toast.success("Login successful");
       // set token in cookie
       document.cookie = `authToken=${data.token}; path=/`;
       router.push("/");
@@ -62,9 +62,11 @@ export default function LoginPage() {
 
         <button
           disabled={isSubmitting}
-          className={`w-full text-white mt-3 rounded-md bg-primary hover:bg-gray-600 ${
-            isSubmitting && "bg-gray-600"
-          }`}
+          className={
+            isSubmitting
+              ? "opacity-50 w-full text-white mt-3 rounded-md bg-primary hover:bg-gray-6"
+              : `w-full text-white mt-3 rounded-md bg-primary hover:bg-gray-600`
+          }
           type="submit"
         >
           <span className="block w-full py-3">LOGIN</span>

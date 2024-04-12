@@ -13,6 +13,7 @@ export default {
         lightBg: "#F4F4F4",
         lightText: "#333333",
         borderClr: "#C1C1C1",
+        darkBg: "#CCCCCC",
       },
       screens: {
         "2xl": { max: "1535px" },

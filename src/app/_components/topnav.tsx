@@ -2,18 +2,33 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import userAuthUser from "../../utils/hooks";
 
 export default function Topnav() {
-  const { user } = userAuthUser();
+  // const [name, setName] = useState<string>("");
+  let name: string | undefined;
+  if (window && window?.location.pathname === "/") {
+    const { user } = userAuthUser();
+    name = user?.name;
+  }
+
+  // todo: solve this
+  // useEffect(() => {
+  //   if (window.location.pathname === "/") {
+  //     const { user } = userAuthUser();
+  //     if (user) {
+  //       setName(user?.name as string);
+  //     }
+  //   }
+  // }, []);
 
   return (
     <nav className="flex flex-col gap-4 px-10 mobile:px-4 py-5">
       <ul className="flex gap-4 self-end text-xs">
         <li>Help</li>
         <li>Orders & Returns</li>
-        {user && <li>Hi, {user.name.split(" ")[0]}</li>}
+        {name && <li>Hi, {name.split(" ")[0]}</li>}
       </ul>
 
       <div className="jus flex items-center justify-between">
