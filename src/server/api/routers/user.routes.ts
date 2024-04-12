@@ -5,8 +5,8 @@ import {
   privateProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
-import { signUpUser, verifyUser } from "../../controller/user.controller";
-import { getHash, getJwtToken } from "../../../utils/general";
+import { signUpUser, verifyUser } from "../../service/user.service";
+import { getHash, getJwtToken } from "../../../utils";
 
 export const userRouter = createTRPCRouter({
   greeting: publicProcedure.query(() => "hello8"),

@@ -5,11 +5,11 @@ import {
   privateProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
-import { generateCategories } from "../../../utils/general";
+import { generateCategories } from "../../../utils";
 import {
   getPaginatedCategories,
   markInterest,
-} from "../../controller/category.controller";
+} from "../../service/category.service";
 
 export const categoryRouter = createTRPCRouter({
   // * init fake data into categories table

@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
-import { db } from "../db";
-import { generateOtp, getHash, getJwtToken } from "../../utils/general";
-import { sendOtpMail } from "../../utils/mail";
+import { db } from "../../config/db";
+import { generateOtp, getHash, getJwtToken } from "../../utils";
+import { sendOtpMail } from "./mail.service";
 
 async function signUpUser(input: {
   name: string;

@@ -10,8 +10,8 @@ import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import { db } from "@/server/db";
-import { JwtDecodedInterface, findUserByToken } from "../../utils/dbHelper";
+import { db } from "@/config/db";
+import { JwtDecodedInterface, findUserByToken } from "../../utils";
 
 /**
  * 1. CONTEXT

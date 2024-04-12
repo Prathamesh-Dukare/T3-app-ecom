@@ -1,5 +1,5 @@
-import { mailTransport } from "../config/mail";
-import { env } from "../env";
+import { mailTransport } from "../../config/mail";
+import { env } from "../../env";
 
 async function sendOtpMail(otp: number, toMail: string) {
   const sendRes = await mailTransport.sendMail({

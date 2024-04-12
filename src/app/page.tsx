@@ -15,7 +15,6 @@ export default function Home() {
   const [pageData, setPageData] = useState<CategoryItem[]>([]);
   const [pageCount, setPageCount] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(6); // no need to assume, will also come from db but ok for now
 
   const categoryData = api.category.getAll.useMutation({
     onSuccess(data) {
@@ -66,7 +65,7 @@ export default function Home() {
   // update categories on page change
   useEffect(() => {
     categoryData.mutate({
-      offset: (currentPage - 1) * pageSize, // offset id
+      offset: (currentPage - 1) * 6, // no need to assume, can also come from db but ok for now
     });
   }, [currentPage]);
 
@@ -89,25 +88,7 @@ export default function Home() {
             className="flex flex-col gap-3 my-4  sm:w-fit sm:mx-auto"
           >
             {pageData.map((item) => {
-              // console.log(item);
               return (
-                // !old
-                // <div key={item.id}>
-                //   <input
-                //     type="checkbox"
-                //     id={item.semanticId}
-                //     name={item.name}
-                //     checked={item.isChecked}
-                //     onChange={() => {
-                //       onCheckClick(item);
-                //     }}
-                //   />
-                //   <label htmlFor={item.semanticId} className="ml-2">
-                //     {item.name}
-                //   </label>
-                // </div>
-
-                // !new
                 <div
                   key={item.id}
                   className="inline-flex items-center"
@@ -183,6 +164,7 @@ export default function Home() {
           );
         })}
 
+        {/* next button */}
         <button
           disabled={currentPage === pageCount}
           onClick={() => {
