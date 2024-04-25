@@ -1,4 +1,5 @@
 # Ecom App t3 stack
+### Exploring T3 stack
  [![Made With Love](https://img.shields.io/badge/Made%20With-Love-orange.svg)](https://github.com/Prathamesh-Dukare) 
 
 # Tech Stack
